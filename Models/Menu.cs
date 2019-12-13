@@ -69,12 +69,12 @@ namespace Bakery.Models {
         }
 
         public BakeryItem FindItem(int id) {
-            for (int i = 0; Items.Length; i++) {
+            for (int i = 0; i < Items.Length; i++) {
                 if (Items[i].Id == id) {
                     return Items[i];
                 }
-                return new BakeryItem("", 0, 0);
             }
+            return new BakeryItem("", 0, 0);
         }
 
     }

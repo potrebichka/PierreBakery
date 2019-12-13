@@ -10,7 +10,7 @@ namespace Bakery.Models {
         }
 
         public void AddItem(int id) {
-            BakeryItem item = menu.FindItem();
+            BakeryItem item = menu.FindItem(id);
             if (item.Id == 0) {
                 Console.WriteLine("Item was not found!");
             } else {
@@ -22,29 +22,29 @@ namespace Bakery.Models {
 
         public void RemoveItem(int id) {
             BakeryItem item = new BakeryItem("", 0, 0);
-            for (int i = 0; i < Items.Count; i++) {
+            for (int i = Items.Count - 1; i>= 0; i--) {
                 if (Items[i].Id == id) {
                     item = Items[i];
-                    Items.Remove(item);
+                    Items.RemoveAt(i);
+                    break;
                 }
             }
             if (item.Id == 0) {
                 Console.WriteLine("Item was not found!");
             } else {
-                Items.Add(item);
                 Console.WriteLine($"Item was deleted from the CART: / Id: {item.Id} , Name: {item.Name}, Cost: {item.Cost} /");
             }
 
         }
 
-        private int CalculatePrice() {
-            int price = 0;
+        private double CalculatePrice() {
+            double price = 0;
             int countOffer1 = 0;
             int countOffer2 = 0;
-            int sumOffer2 = 0;
+            double sumOffer2 = 0;
             for (int i = 0; i < Items.Count; i++) 
             {
-                if (typeof(Items[i]) == typeof(Bread)) 
+                if (Items[i].GetType() == typeof(Bread)) 
                 {
                     if (countOffer1 == 0) 
                     {
@@ -83,7 +83,7 @@ namespace Bakery.Models {
 
             if (Items.Count == 0) 
             {
-                Table.PrintLine("Empty Cart");
+                Table.PrintAlign("Empty Cart");
             } 
             else
             {
@@ -96,7 +96,7 @@ namespace Bakery.Models {
                     Table.PrintLine();
                 }
             }
-            Table.PrintAlign($"Total Cost: {CalculatePrice}"); 
+            Table.PrintAlign($"Total Cost: {CalculatePrice()}"); 
         }
     }
 }

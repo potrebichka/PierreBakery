@@ -23,6 +23,7 @@ namespace Bakery {
 
             Menu menu = new Menu();
             menu.PrintMenu();
+            Cart cart = new Cart();
 
             bool condition = true;
             while (condition) {
@@ -39,6 +40,23 @@ namespace Bakery {
                         menu.PrintMenu();
                         break;
                     case "2":
+                        cart.DisplayCart();
+                        break;
+                    case "3":
+                        Console.WriteLine("Enter id of item to add");
+                        string addIdInput = Console.ReadLine();
+                        if (addIdInput != "") 
+                        {
+                            cart.AddItem(int.Parse(addIdInput));
+                        }
+                        break;
+                    case "4":
+                        Console.WriteLine("Enter id of item to remove");
+                        string removeIdInput = Console.ReadLine();
+                        if (removeIdInput != "") 
+                        {
+                            cart.RemoveItem(int.Parse(removeIdInput));
+                        }
                         break;
                     case "5":
                         condition = false;
