@@ -1,27 +1,53 @@
 using System;
+using Bakery.Models;
 
 namespace Bakery {
     class Bakery {
         public static void Main() {
-            Console.WriteLine("Welcome to Pierre's Bakery\n");
+            Table.PrintAlign("Welcome to Pierre's Bakery");
+            Table.PrintAlign("------------------\n");
 
             Console.WriteLine("Enter you name:");
             string userName = Console.ReadLine();
 
             int myDateHour = DateTime.Now.Hour;
             if (myDateHour >= 5 && myDateHour < 12) {
-                Console.WriteLine($"Good morning, {userName}!");
+                Table.PrintAlign($"Good morning, {userName}!");
             } else if (myDateHour >= 12 && myDateHour < 17) {
-                Console.WriteLine($"Good afternoon, {userName}!");
+                Table.PrintAlign($"Good afternoon, {userName}!");
             } else if (myDateHour >= 1 && myDateHour < 5) {
-                Console.WriteLine($"Hello {userName}!");
+                Table.PrintAlign($"Hello {userName}!");
             } else {
-                Console.WriteLine($"Good evening, {userName}");
+                Table.PrintAlign($"Good evening, {userName}");
             }
 
-            Console.WriteLine("------------------");
-            Console.WriteLine("MENU");
-            Console.WriteLine("------------------");
+            //breads
+            Bread bread1 = new Bread("Traditional French Baguette", 3);
+            Bread bread2 = new Bread("Small	French Boule", 4.5);
+            Bread bread3 = new Bread("Kalamata Olive", 6);
+            Bread bread4 = new Bread("Walnut Raisin", 6);
+            Bread bread5 = new Bread("Brioche", 7.5);
+            Bread bread6 = new Bread("Whole Wheat Multi-Grain", 6.5);
+
+            Table.PrintAlign("------------------");
+            Table.PrintAlign("MENU");
+            Table.PrintAlign("------------------");
+            Table.PrintLine();
+            Table.PrintRow(new string [] {"Name", "Price"});
+            Table.PrintLine();
+            Table.PrintRow(bread1.Display());
+            Table.PrintLine();
+            Table.PrintRow(bread2.Display());
+            Table.PrintLine();
+            Table.PrintRow(bread3.Display());
+            Table.PrintLine();
+            Table.PrintRow(bread4.Display());
+            Table.PrintLine();
+            Table.PrintRow(bread5.Display());
+            Table.PrintLine();
+            Table.PrintRow(bread6.Display());
+            Table.PrintLine();
+
         }
     }
 }
