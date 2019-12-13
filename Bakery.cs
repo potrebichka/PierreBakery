@@ -38,6 +38,8 @@ namespace Bakery {
                     case "1":
                         menu.PrintMenu();
                         break;
+                    case "2":
+                        break;
                     case "5":
                         condition = false;
                         break;
