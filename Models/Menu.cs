@@ -1,10 +1,10 @@
 using System;
 namespace Bakery.Models {
     class Menu {
-        private Bread[] ItemsBread;
-        private Pastry[] ItemsPastry;
+
+        private BakeryItem[] Items;
         public Menu() {
-            int index = 0;
+            int index = 1;
             //breads
             Bread bread1 = new Bread("Traditional French Baguette", 3, index);
             Bread bread2 = new Bread("Small French Boule", 4.5, index++);
@@ -12,14 +12,13 @@ namespace Bakery.Models {
             Bread bread4 = new Bread("Walnut Raisin", 6, index++);
             Bread bread5 = new Bread("Brioche", 7.5, index++);
             Bread bread6 = new Bread("Whole Wheat Multi-Grain", 6.5, index++);
-            ItemsBread = new Bread[] {bread1, bread2, bread3, bread4, bread5, bread6};
             Pastry pastry1 = new Pastry("Butter Croissant", 3, index);
             Pastry pastry2 = new Pastry("Chocolate Croissant", 3.5, index++);
             Pastry pastry3 = new Pastry("Almond Croissant", 3.5, index++);
             Pastry pastry4 = new Pastry("Chocolate Almond Croissant", 4, index++);
             Pastry pastry5 = new Pastry("Raspberry Almond Croissant", 4, index++);
             Pastry pastry6 = new Pastry("Pistachio White Chocolate Almond Croissant", 5, index++);
-            ItemsPastry = new Pastry[] {pastry1, pastry2, pastry3, pastry4, pastry5, pastry6};
+            Items = new BakeryItem[] {bread1, bread2, bread3, bread4, bread5, bread6, pastry1, pastry2, pastry3, pastry4, pastry5, pastry6};
         }
 
         public void PrintMenu() {
@@ -36,7 +35,8 @@ namespace Bakery.Models {
             Table.PrintRow(new string [] {"Id", "Name", "Price"});
             Table.PrintLine();
 
-            foreach (Bread bread in ItemsBread) {
+            for (int i = 0; i < 6; i++) {
+                BakeryItem bread = Items[i];
                 Table.PrintRow(bread.Display());
                 Table.PrintLine();
             }
@@ -49,7 +49,8 @@ namespace Bakery.Models {
             Table.PrintRow(new string [] {"Id", "Name", "Price"});
             Table.PrintLine();
 
-            foreach (Pastry pastry in ItemsPastry) {
+            for (int i = 6; i < 12; i++) {
+                BakeryItem pastry = Items[i];
                 Table.PrintRow(pastry.Display());
                 Table.PrintLine();
             }
@@ -66,5 +67,15 @@ namespace Bakery.Models {
             Table.PrintRow(new string [] {"Pastry", "Buy any 3 for $8"});
             Table.PrintLine();
         }
+
+        public BakeryItem FindItem(int id) {
+            for (int i = 0; Items.Length; i++) {
+                if (Items[i].Id == id) {
+                    return Items[i];
+                }
+                return new BakeryItem("", 0, 0);
+            }
+        }
+
     }
 }
