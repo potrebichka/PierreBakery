@@ -22,31 +22,8 @@ namespace Bakery {
             }
 
             //breads
-            Bread bread1 = new Bread("Traditional French Baguette", 3);
-            Bread bread2 = new Bread("Small	French Boule", 4.5);
-            Bread bread3 = new Bread("Kalamata Olive", 6);
-            Bread bread4 = new Bread("Walnut Raisin", 6);
-            Bread bread5 = new Bread("Brioche", 7.5);
-            Bread bread6 = new Bread("Whole Wheat Multi-Grain", 6.5);
-
-            Table.PrintAlign("------------------");
-            Table.PrintAlign("MENU");
-            Table.PrintAlign("------------------");
-            Table.PrintLine();
-            Table.PrintRow(new string [] {"Name", "Price"});
-            Table.PrintLine();
-            Table.PrintRow(bread1.Display());
-            Table.PrintLine();
-            Table.PrintRow(bread2.Display());
-            Table.PrintLine();
-            Table.PrintRow(bread3.Display());
-            Table.PrintLine();
-            Table.PrintRow(bread4.Display());
-            Table.PrintLine();
-            Table.PrintRow(bread5.Display());
-            Table.PrintLine();
-            Table.PrintRow(bread6.Display());
-            Table.PrintLine();
+            Menu menu = new Menu();
+            menu.PrintMenu();
 
         }
     }

@@ -10,7 +10,7 @@ namespace Bakery.Models {
             Id = id;
         }
         public string [] Display() {
-            return new string[] {Name, "$" + Cost.ToString()};
+            return new string[] {Id.ToString(), Name, "$" + Cost.ToString()};
         }
     }
 }
