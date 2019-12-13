@@ -4,6 +4,7 @@ namespace Bakery.Models {
     class Cart {
         private List<BakeryItem> Items;
         private Menu menu = new Menu();
+        private Dictionary <BakeryItem, int> CountDict = new Dictionary<BakeryItem, int>(); 
 
         public Cart() {
             Items = new List<BakeryItem>{};
@@ -16,6 +17,11 @@ namespace Bakery.Models {
             } else {
                 Items.Add(item);
                 Console.WriteLine($"Item was added to the CART: / Id: {item.Id} , Name: {item.Name}, Cost: {item.Cost} /");
+                if (CountDict.ContainsKey(item)) {
+                    CountDict[item] += 1;
+                } else {
+                    CountDict.Add(item, 1);
+                }
             }
 
         }
@@ -33,6 +39,13 @@ namespace Bakery.Models {
                 Console.WriteLine("Item was not found!");
             } else {
                 Console.WriteLine($"Item was deleted from the CART: / Id: {item.Id} , Name: {item.Name}, Cost: {item.Cost} /");
+
+                if (CountDict.ContainsKey(item)) {
+                    CountDict[item] -= 1;
+                    if (CountDict[item] <= 0) {
+                        CountDict.Remove(item);
+                    }
+                }
             }
 
         }
@@ -84,19 +97,28 @@ namespace Bakery.Models {
             if (Items.Count == 0) 
             {
                 Table.PrintAlign("Empty Cart");
+                Table.PrintAlign("------------------");
             } 
             else
             {
-                Table.PrintRow(new string [] {"Id", "Product", "Cost"});
+                Table.PrintRowWithIdCount(new string [] {"Id", "Product", "Cost", "Count"});
                 Table.PrintLine();
 
-                for (int i = 0; i < Items.Count; i++) 
+                foreach( KeyValuePair<BakeryItem, int> kvp in CountDict )
                 {
-                    Table.PrintRow(Items[i].Display());
+                    BakeryItem item = kvp.Key;
+                    string [] result = item.Display();
+                    string [] count =  new string[] {kvp.Value.ToString()};
+                    string [] combined = new string[result.Length + count.Length];
+                    Array.Copy(result, combined, result.Length);
+                    Array.Copy(count, 0, combined, result.Length, count.Length);
+                    Table.PrintRowWithIdCount(combined);
                     Table.PrintLine();
                 }
             }
-            Table.PrintAlign($"Total Cost: {CalculatePrice()}"); 
+            Table.PrintAlign($"Total Cost: ${String.Format("{0:0.00}", CalculatePrice())}"); 
+            Table.PrintLine();
         }
+
     }
 }

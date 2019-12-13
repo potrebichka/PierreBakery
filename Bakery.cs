@@ -7,8 +7,10 @@ namespace Bakery {
             Table.PrintAlign("Welcome to Pierre's Bakery");
             Table.PrintAlign("------------------\n");
 
+            Console.WriteLine("------------------");
             Console.WriteLine("Enter you name:");
             string userName = Console.ReadLine();
+            Console.WriteLine("------------------");
 
             int myDateHour = DateTime.Now.Hour;
             if (myDateHour >= 5 && myDateHour < 12) {
@@ -20,6 +22,7 @@ namespace Bakery {
             } else {
                 Table.PrintAlign(userName == "" ? $"Good morning!" : $"Good evening, {userName}");
             }
+            Console.WriteLine();
 
             Menu menu = new Menu();
             menu.PrintMenu();
@@ -27,14 +30,17 @@ namespace Bakery {
 
             bool condition = true;
             while (condition) {
+                Console.WriteLine("------------------");
                 Console.WriteLine("Choose option:");
                 Console.WriteLine("[1]: MENU");
                 Console.WriteLine("[2]: CART");
                 Console.WriteLine("[3]: Add item to CART");
                 Console.WriteLine("[4]: Remove item from CART");
                 Console.WriteLine("[5]: Exit program");
+                Console.WriteLine("------------------");
 
                 string userInput = Console.ReadLine();
+                Console.WriteLine("------------------");
                 switch (userInput) {
                     case "1":
                         menu.PrintMenu();
@@ -47,7 +53,11 @@ namespace Bakery {
                         string addIdInput = Console.ReadLine();
                         if (addIdInput != "") 
                         {
-                            cart.AddItem(int.Parse(addIdInput));
+                            Console.WriteLine("Enter how many items do you want to add:");
+                            string quantityAnswer = Console.ReadLine();
+                            for (int i =0; i < int.Parse(quantityAnswer); i++) {
+                                cart.AddItem(int.Parse(addIdInput));
+                            }
                         }
                         break;
                     case "4":

@@ -32,12 +32,12 @@ namespace Bakery.Models {
             Table.PrintAlign("------------------");
             Table.PrintLine();
 
-            Table.PrintRow(new string [] {"Id", "Name", "Price"});
+            Table.PrintRowWithId(new string [] {"Id", "Name", "Price"});
             Table.PrintLine();
 
             for (int i = 0; i < 6; i++) {
                 BakeryItem bread = Items[i];
-                Table.PrintRow(bread.Display());
+                Table.PrintRowWithId(bread.Display());
                 Table.PrintLine();
             }
 
@@ -46,12 +46,12 @@ namespace Bakery.Models {
             Table.PrintAlign("------------------");
             Table.PrintLine();
     
-            Table.PrintRow(new string [] {"Id", "Name", "Price"});
+            Table.PrintRowWithId(new string [] {"Id", "Name", "Price"});
             Table.PrintLine();
 
             for (int i = 6; i < 12; i++) {
                 BakeryItem pastry = Items[i];
-                Table.PrintRow(pastry.Display());
+                Table.PrintRowWithId(pastry.Display());
                 Table.PrintLine();
             }
 
