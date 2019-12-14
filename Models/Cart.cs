@@ -137,5 +137,20 @@ namespace Bakery.Models {
             Table.PrintLine();
         }
 
+        public void DisplayOrder() {
+            Table.PrintAlign("------------------");
+            Table.PrintAlign($"Cost: ${String.Format("{0:0.00}", CalculatePrice())}");
+            Table.PrintAlign("------------------");
+            Table.PrintAlign("Your order:");
+            foreach( KeyValuePair<BakeryItem, int> kvp in CountDict )
+                {
+                    BakeryItem item = kvp.Key;
+                    Table.PrintAlign($"Name: {item.Name}, Count: {kvp.Value}");
+                }
+        }
+
+        public bool isEmpty() {
+            return Items.Count == 0;
+        }
     }
 }

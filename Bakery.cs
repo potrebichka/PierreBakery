@@ -36,7 +36,9 @@ namespace Bakery {
                 Console.WriteLine("[2]: CART");
                 Console.WriteLine("[3]: Add item to CART");
                 Console.WriteLine("[4]: Remove item from CART");
-                Console.WriteLine("[5]: Exit program");
+                Console.WriteLine("[5]: BUY");
+                Console.WriteLine("[6]: Empty Cart");
+                Console.WriteLine("[7]: Exit program");
                 Console.WriteLine("------------------");
 
                 string userInput = Console.ReadLine();
@@ -69,6 +71,20 @@ namespace Bakery {
                         }
                         break;
                     case "5":
+                        if (cart.isEmpty()) {
+                            Table.PrintAlign("You cart is empty.");
+                        } else {
+                            Table.PrintAlign("Thank you for shopping in Pierre's bakery!");
+                            cart.DisplayOrder();
+                        }
+
+                        cart = new Cart();
+                        break;
+                    case "6":
+                        Console.WriteLine("You cart is empty");
+                        cart = new Cart();
+                        break;
+                    case "7":
                         condition = false;
                         break;
                     default:
