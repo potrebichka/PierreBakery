@@ -26,19 +26,18 @@ dotnet run
 ## Specifications:
 * User gets welcome message.
 * User prompt to enter name and gets message "Good morning/afternoon/evening/night/" depending on the current time of day.
-* User gets costs for different types of bread and pastry. 
+* User gets menu with costs for different types of bread and pastry. 
 * User gets message about Pierre's bakery deals.
-* User is able to specify how many loaves of bread or pastry they would like.
-* User returns the total cost of order.
--------
-Extra:
-* Add Cart - Add, Remove, Buy, Save
-* Another User
+* User can add and remove items from their Cart. User is able to specify how many items they want to add.
+* User is able to see added items in their Cart, total price and applied offers. 
+* User can buy. They will be provided with information about total cost of their order and bought items.
+* User is able to empty their cart.
+* User is able to quit the program.
 
 ## Technologies Used
 
-_C#_
+_C#, .NET_
 
 ### License
 
-*_Copyright (c) 2019 **Nina Potrebich, Jordan Safford**_*
+*_Copyright (c) 2019 **Nina Potrebich**_*
